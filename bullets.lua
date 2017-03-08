@@ -1,5 +1,5 @@
 bullets = { 
-	img = love.graphics.newImage("bullet.png")
+	img = love.graphics.newImage("sprites/bullet.png")
 }
 
 function shoot(dt)

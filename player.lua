@@ -2,7 +2,7 @@ player = {
 	accel = 75,
 	turnSpeed = 10,
 	direction = 0.5 * math.pi,
-	img = love.graphics.newImage("ship.png"),
+	img = love.graphics.newImage("sprites/ship.png"),
 	firing_speed = 0.5,
 	shoot_timer = 0
 }
@@ -16,9 +16,9 @@ end
 
 function player_update(dt)
 	--when the player hits an asteroid
-	if player.fixture:getUserData() == "player_D" then
-		love.event.push("quit")
-	end
+	--if player.fixture:getUserData() == "player_D" then
+	--	love.event.push("quit")
+	--end
 
 	--turning
 	if love.keyboard.isDown("right") then
@@ -34,7 +34,7 @@ function player_update(dt)
 		player.body:applyForce(player.accel * math.cos(player.direction), player.accel * math.sin(player.direction))
 	end
 	
-	if love.keyboard.isDown(" ") then
+	if love.keyboard.isDown("space") then
 		shoot(dt)
 	end
 	

@@ -1,6 +1,6 @@
 function world_load()
 	--set up world
-	love.graphics.setMode(1024, 768, false, true, 16)
+	love.window.setMode(1024, 768)
 	love.physics.setMeter(100)
 	world = love.physics.newWorld(0,0,true)
 	world:setCallbacks(beginContact, endContact, preSolve, postSolve)

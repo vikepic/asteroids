@@ -26,7 +26,7 @@ end
 --button presses
 function love.keypressed(key)
 	--shoot bullets
-	if key == (" ") then
+	if key == ("space") then
 		bullet_create()
 		debugText = debugText .. "shoot" .. "\n"
 	end
@@ -48,7 +48,7 @@ function love.draw()
 	player_draw()
 	bullets_draw()
 	asteroids_draw()
-	love.graphics.print("Score: " .. score, width - 100, 10)
+	love.graphics.print("Puntuacion: " .. score .. "/200", width - 150, 10)
 
 	--debug
 	if show_debug then

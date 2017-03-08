@@ -1,5 +1,8 @@
 asteroids = {
-	img = love.graphics.newImage("asteroid.png")
+	img = love.graphics.newImage("sprites/a1.png")
+	--img = {love.graphics.newImage("sprites/a1.png"),
+  --       love.graphics.newImage("sprites/a3.png"),
+  --       love.graphics.newImage("sprites/a5.png")} 
 }
 
 function asteroid_create(size, x, y)
@@ -95,6 +98,7 @@ end
 
 function asteroids_draw()
 	for i, o in ipairs(asteroids) do
+    -- todo: apply rotation
 		love.graphics.draw(asteroids.img, o.body:getX(), o.body:getY(), 0, 1/o.size, 1/o.size, 50, 50)
 	end
 end
