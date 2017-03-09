@@ -1,8 +1,7 @@
 asteroids = {
-	img = love.graphics.newImage("sprites/a1.png")
-	--img = {love.graphics.newImage("sprites/a1.png"),
-  --       love.graphics.newImage("sprites/a3.png"),
-  --       love.graphics.newImage("sprites/a5.png")} 
+	img = {love.graphics.newImage("sprites/a1.png"),
+         love.graphics.newImage("sprites/a2.png")}
+         
 }
 
 function asteroid_create(size, x, y)
@@ -29,11 +28,16 @@ function asteroid_create(size, x, y)
 			asteroids[#asteroids].health = 1
 			asteroids[#asteroids].score = 100
 	end
-	
-	asteroids[#asteroids].body = love.physics.newBody(world, x, y, "dynamic")
-	asteroids[#asteroids].shape = love.physics.newRectangleShape(100/asteroids[#asteroids].size, 100/asteroids[#asteroids].size)
-	asteroids[#asteroids].fixture = love.physics.newFixture(asteroids[#asteroids].body, asteroids[#asteroids].shape)
-	asteroids[#asteroids].speed = player.body:getLinearVelocity() + 50
+  --Random image index assigned to this asteroid
+	asteroids[#asteroids].idx = love.math.random(#asteroids.img)
+	asteroids[#asteroids].body = 
+    love.physics.newBody(world, x, y, "dynamic")
+	asteroids[#asteroids].shape = 
+    love.physics.newRectangleShape(100/asteroids[#asteroids].size, 100/asteroids[#asteroids].size)
+	asteroids[#asteroids].fixture = 
+    love.physics.newFixture(asteroids[#asteroids].body, asteroids[#asteroids].shape)
+	asteroids[#asteroids].speed = 
+    player.body:getLinearVelocity() + 50
 	asteroids[#asteroids].fixture:setUserData("asteroid")
 
 end
@@ -99,6 +103,6 @@ end
 function asteroids_draw()
 	for i, o in ipairs(asteroids) do
     -- todo: apply rotation
-		love.graphics.draw(asteroids.img, o.body:getX(), o.body:getY(), 0, 1/o.size, 1/o.size, 50, 50)
+		love.graphics.draw(asteroids.img[o.idx], o.body:getX(), o.body:getY(), 0, 1/o.size, 1/o.size, 50, 50)
 	end
 end
