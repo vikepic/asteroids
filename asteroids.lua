@@ -1,7 +1,7 @@
 asteroids = {
 	img = {love.graphics.newImage("sprites/a1.png"),
-         love.graphics.newImage("sprites/a2.png")}
-         
+         love.graphics.newImage("sprites/a2.png")},
+  ang_speed = 1         
 }
 
 function asteroid_create(size, x, y)
@@ -30,6 +30,10 @@ function asteroid_create(size, x, y)
 	end
   --Random image index assigned to this asteroid
 	asteroids[#asteroids].idx = love.math.random(#asteroids.img)
+  --Rotation configuration, from 0 to 360 deg
+	asteroids[#asteroids].angle = love.math.random(360)
+	asteroids[#asteroids].ang_speed = 
+    asteroids.ang_speed * love.math.random() * love.math.random(-1, 1)
 	asteroids[#asteroids].body = 
     love.physics.newBody(world, x, y, "dynamic")
 	asteroids[#asteroids].shape = 
@@ -37,7 +41,7 @@ function asteroid_create(size, x, y)
 	asteroids[#asteroids].fixture = 
     love.physics.newFixture(asteroids[#asteroids].body, asteroids[#asteroids].shape)
 	asteroids[#asteroids].speed = 
-    player.body:getLinearVelocity() + 50
+    player.body:getLinearVelocity() + 10 
 	asteroids[#asteroids].fixture:setUserData("asteroid")
 
 end
@@ -97,12 +101,15 @@ function asteroids_update(dt)
 			o.body:destroy()
 			table.remove(asteroids, i)
 		end
+    
+    --Rotation
+    o.angle = o.angle + o.ang_speed * dt
 	end
 end
 
 function asteroids_draw()
 	for i, o in ipairs(asteroids) do
     -- todo: apply rotation
-		love.graphics.draw(asteroids.img[o.idx], o.body:getX(), o.body:getY(), 0, 1/o.size, 1/o.size, 50, 50)
+		love.graphics.draw(asteroids.img[o.idx], o.body:getX(), o.body:getY(), o.angle, 1/o.size, 1/o.size, 50, 50)
 	end
 end
