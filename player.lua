@@ -1,5 +1,5 @@
 player = {
-	accel = 75,
+	accel = 25,
 	turnSpeed = 10,
 	direction = 0.5 * math.pi,
 	img = love.graphics.newImage("sprites/ship.png"),
