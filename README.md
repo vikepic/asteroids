@@ -1,4 +1,3 @@
-Asteroids
+asteroids
 =========
-
-Asteroids programmed in Lua/LOVE2D
+> :rocket: Asteroids game built for my father's birthday
